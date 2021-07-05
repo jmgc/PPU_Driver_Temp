@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>STM32F7xxHVCONTROL</title>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta content="MSHTML 6.00.2800.1561" name="GENERATOR">
+<style ="font-weight: normal; font-family: Verdana;"></style></head>
+<body>
+<h4><small style="font-family: Verdana;"><small><big><big><big style="font-weight: bold;"><big><strong><span style="font-style: italic;">
+High Voltage Control</span></strong>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</big></big></big></big></small></small></h4>
+<hr style="width: 100%; height: 2px;">
+<table style="width: 961px; height: 30px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="font-family: Verdana; font-weight: bold; font-style: italic; background-color: rgb(51, 51, 255); text-align: center;"><small><a href="/index.html"><span style="color: white;">Home page</span></a></small></td>
+<td style="font-family: Verdana; font-weight: bold; font-style: italic; background-color: rgb(51, 51, 255); text-align: center;"><small><a href="/STM32F7xxADC.shtml"><span style="color: white;"> ADC Readings</span></a></small></td>
+<td style="font-family: Verdana; font-weight: bold; font-style: italic; background-color: rgb(51, 51, 255); text-align: center;"><small><a href="/STM32F7xxHVCONTROL.shtml"><span style="color: white;">HV_Control
+</span></a></small></td>
+</tr>
+</tbody>
+</table>
+<br>
+<table style="width: 787px; color: white; height: 31px;" white="" color="" ;="" 100="" border="0" cellpadding="3" cellspacing="0">
+<tbody>
+<tr>
+<td class="tabtitle" style="height: 15px; background-color: rgb(51, 51, 255);"><big><big><font size="-1"><big><big><strong>STM32
+Webserver High Voltage Control</strong></big></big></font></big></big></td>
+</tr>
+</tbody>
+</table>
+<br>
+
+<form method="get" action="/hvcontrol_params.cgi">
+<label for="Gate_Period">Gate_Period</label> <input type="text" name="Gate_Period" value="50e-06">[<!--#tag1-->]<br>
+<label for="Gate_DutyCycle">Gate_DutyCycle</label> <input type="text" name="Gate_DutyCycle" value="0.5">[<!--#tag2-->]<br>
+<br>
+<label for="Bipolar_PWM_Deadtime">Bipolar_PWM_Deadtime</label> <input type="text" name="Bipolar_PWM_Deadtime" value="0.6e-06">[<!--#tag3-->]<br>
+<br>
+<label for="Positive_Bipolar_PWM_Period">Positive_Bipolar_PWM_Period</label> <input type="text" name="Positive_Bipolar_PWM_Period" value="1.3e-06">[<!--#tag4-->]<br>
+<label for="Positive_Bipolar_PWM_Pulse">Positive_Bipolar_PWM_Pulse</label> <input type="text" name="Positive_Bipolar_PWM_Pulse" value="50e-09">[<!--#tag5-->]<br>
+<label for="Negative_Bipolar_PWM_Period">Negative_Bipolar_PWM_Period</label> <input type="text" name="Negative_Bipolar_PWM_Period" value="1.3e-06">[<!--#tag6-->]<br>
+<label for="Negative_Bipolar_PWM_Pulse">Negative_Bipolar_PWM_Pulse</label> <input type="text" name="Negative_Bipolar_PWM_Pulse" value="50e-09">[<!--#tag7-->]<br>
+<br>
+<label for="Voltage_Threshold">Voltage_Threshold</label> <input type="text" name="Voltage_Threshold" value="16">[<!--#tag8-->]<br>
+<br>
+<label for="Positive_MOS_On_Time">Positive_MOS_On_Time</label> <input type="text" name="Positive_MOS_On_Time" value="1000">[<!--#tag9-->]<br>
+<label for="Positive_MOS_Charge_Time">Positive_MOS_Charge_Time</label> <input type="text" name="Positive_MOS_Charge_Time" value="0">[<!--#tag13-->]<br>
+<label for="Negative_MOS_On_Time">Negative_MOS_On_Time</label> <input type="text" name="Negative_MOS_On_Time" value="1000">[<!--#tag10-->]<br>
+<label for="Negative_MOS_Charge_Time">Negative_MOS_Charge_Time</label> <input type="text" name="Negative_MOS_Charge_Time" value="0">[<!--#tag14-->]<br>
+<br>
+<label for="Polarity_Switch_Delta_Time">Polarity_Switch_Delta_Time</label> <input type="text" name="Polarity_Switch_Delta_Time" value="25">[<!--#tag15-->]<br>
+<br>
+<input value="Send Configuration" type="submit">
+</form>
+<br>
+
+Status : [<!--#tag16-->]<br>
+
+<form method="get" action="/hvcontrol_en.cgi">
+<input type="submit" name="Enable" value="Enable"  style="height:50px; width:100px; font-weight: bold">
+<input type="submit" name="Disable" value="Disable" style="height:50px; width:100px; font-weight: bold">
+</form>
+<br>
+
+</body></html>	
