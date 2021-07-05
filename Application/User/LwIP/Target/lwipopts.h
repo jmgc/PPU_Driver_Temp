@@ -196,6 +196,7 @@ a lot of data that needs to be copied, this should be set high. */
  * file system (to prevent changing the file included in CVS) */
 #define HTTPD_USE_CUSTOM_FSDATA   1
 
+#define LWIP_HTTPD_DYNAMIC_HEADERS 1
 
 #define LWIP_DEBUG                      LWIP_DBG_OFF
 #define ETHARP_DEBUG                    LWIP_DBG_OFF
