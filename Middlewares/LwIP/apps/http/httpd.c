@@ -855,7 +855,7 @@ get_http_headers(struct http_state *hs, const char *uri)
   /* Is this a normal file or the special case we use to send back the
      default "404: Page not found" response? */
   if (uri == NULL) {
-    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_NOT_FOUND];
+    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_NOT_FOUND_11];
 #if LWIP_HTTPD_SUPPORT_11_KEEPALIVE
     if (hs->keepalive) {
       hs->hdrs[HDR_STRINGS_IDX_CONTENT_TYPE] = g_psHTTPHeaderStrings[DEFAULT_404_HTML_PERSISTENT];
@@ -875,13 +875,13 @@ get_http_headers(struct http_state *hs, const char *uri)
       indicative of a 404 server error whereas all other files require
       the 200 OK header. */
   if (strstr(uri, "404")) {
-    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_NOT_FOUND];
+    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_NOT_FOUND_11];
   } else if (strstr(uri, "400")) {
-    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_BAD_REQUEST];
+    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_BAD_REQUEST_11];
   } else if (strstr(uri, "501")) {
-    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_NOT_IMPL];
+    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_NOT_IMPL_11];
   } else {
-    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_OK];
+    hs->hdrs[HDR_STRINGS_IDX_HTTP_STATUS] = g_psHTTPHeaderStrings[HTTP_HDR_OK_11];
   }
 
   /* Determine if the URI has any variables and, if so, temporarily remove
