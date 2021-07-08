@@ -49,6 +49,7 @@ static void CPU_CACHE_Enable(void);
 static void MX_TIM1_Init();
 static void MX_TIM8_Init(void);
 static void MX_ADC1_Init(void);
+static void MX_GPIO_Init(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -82,27 +83,9 @@ int main(void) {
 	/* Initialize the HV Control */
 	HV_Control_Init(25);
 
-	/*
-	HV_Control.Enabled = 0;
-	HV_Control.Bipolar_PWM_Deadtime = 0.6e-6;
-	HV_Control.Gate_DutyCycle = 0.5;
-	HV_Control.Gate_Period = 1e-04;
-	HV_Control.Negative_Bipolar_PWM_Period = HV_Control_check_positive_period(1.3e-06);
-	HV_Control.Negative_Bipolar_PWM_Pulse = HV_Control_check_positive_pulse(320e-09);
-	HV_Control.Negative_MOS_On_Time = 2000;
-	HV_Control.Negative_Output_Enabled = 0;
-	HV_Control.Positive_Bipolar_PWM_Period = HV_Control_check_negative_period(1.3e-06);
-	HV_Control.Positive_Bipolar_PWM_Pulse = HV_Control_check_negative_pulse(320e-09);
-	HV_Control.Positive_MOS_On_Time = 2000;
-	HV_Control.Positive_Output_Enabled = 0;
-	HV_Control.Status = POSITIVE_START;
-	HV_Control.Voltage_Threshold = 4096;
-
-	HV_Control.Enabled = 1;
-	 */
-
 	/* Initialize all configured peripherals */
 	MX_USB_Device_Init();
+	MX_GPIO_Init();
 	MX_TIM1_Init();
 	MX_TIM8_Init();
 	MX_ADC1_Init();
@@ -319,6 +302,41 @@ static void MX_ADC1_Init(void) {
 	sConfig.Offset       = 0;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 		Error_Handler();
+}
+
+/**
+  * @brief GPIO Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_GPIO_Init(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOE_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_2|GPIO_PIN_6, GPIO_PIN_RESET); // <- SCLK & MOSI
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_SET); // <-CSN
+
+  /*Configure GPIO pins : PE2 PE6 PE7 PE8
+                           PE9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8
+                          |GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PE5 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5; // <- MISO
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
 }
 
 /**
